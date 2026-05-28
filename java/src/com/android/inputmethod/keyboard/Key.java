@@ -988,19 +988,19 @@ public class Key implements Comparable<Key> {
      */
     @Nonnull
     public final Drawable selectBackgroundDrawable(@Nonnull final Drawable keyBackground,
-            @Nonnull final Drawable functionalKeyBackground,
+            @Nonnull final Drawable functionalKeyBackground, @Nonnull final Drawable actionKeyBackground,
             @Nonnull final Drawable spacebarBackground) {
         final Drawable background;
         if (mBackgroundType == BACKGROUND_TYPE_FUNCTIONAL) {
+        if (mBackgroundType == BACKGROUND_TYPE_FUNCTIONAL) {
             background = functionalKeyBackground;
+        } else if (mBackgroundType == BACKGROUND_TYPE_ACTION) {
+            background = actionKeyBackground;
         } else if (mBackgroundType == BACKGROUND_TYPE_SPACEBAR) {
             background = spacebarBackground;
         } else {
             background = keyBackground;
         }
-        final int[] state = KeyBackgroundState.STATES[mBackgroundType].getState(mPressed);
-        background.setState(state);
-        return background;
     }
 
     public static class Spacer extends Key {

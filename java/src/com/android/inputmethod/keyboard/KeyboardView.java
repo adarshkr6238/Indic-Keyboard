@@ -94,6 +94,7 @@ public class KeyboardView extends View {
     private final Drawable mKeyBackground;
     private final Drawable mFunctionalKeyBackground;
     private final Drawable mSpacebarBackground;
+    private final Drawable mActionKeyBackground;
     private final float mSpacebarIconWidthRatio;
     private final Rect mKeyBackgroundPadding = new Rect();
     private static final float KET_TEXT_SHADOW_RADIUS_DISABLED = -1.0f;
@@ -144,6 +145,10 @@ public class KeyboardView extends View {
         final Drawable spacebarBackground = keyboardViewAttr.getDrawable(
                 R.styleable.KeyboardView_spacebarBackground);
         mSpacebarBackground = (spacebarBackground != null) ? spacebarBackground : mKeyBackground;
+        final Drawable actionKeyBackground = keyboardViewAttr.getDrawable(
+                R.styleable.KeyboardView_actionKeyBackground);
+        mActionKeyBackground = (actionKeyBackground != null) ? actionKeyBackground
+                : mFunctionalKeyBackground;
         mSpacebarIconWidthRatio = keyboardViewAttr.getFloat(
                 R.styleable.KeyboardView_spacebarIconWidthRatio, 1.0f);
         mKeyHintLetterPadding = keyboardViewAttr.getDimension(
@@ -341,7 +346,7 @@ public class KeyboardView extends View {
 
         if (!key.isSpacer()) {
             final Drawable background = key.selectBackgroundDrawable(
-                    mKeyBackground, mFunctionalKeyBackground, mSpacebarBackground);
+                    mKeyBackground, mFunctionalKeyBackground, mActionKeyBackground, mSpacebarBackground);
             if (background != null) {
                 onDrawKeyBackground(key, canvas, background);
             }
